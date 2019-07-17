@@ -1,0 +1,14 @@
+<h1>詳細</h1>
+
+<h3>タイトル</h3>
+<p><%= @post.title %></p>
+
+<h3>病院名</h3>
+<p><%= @post.hospital %></p>
+
+<h3>費用</h3>
+<p><%= @post.cost %></p>
+
+<h3><%= @post.body %></h3>
+
+<%= link_to "編集", edit_user_post_path(@post.id) %>

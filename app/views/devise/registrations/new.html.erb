@@ -1,0 +1,30 @@
+<h2>SIGN UP</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+   <div class="field">
+    <%= f.label "名前" %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label "メールアドレス" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeolder: 'abc@xxx.com' %>
+  </div>
+
+  <div class="field">
+    <%= f.label "パスワード" %><br />
+    <%= f.password_field :password, autocomplete: "new-password", placeolder: '半角英数字6文字以上' %>
+  </div>
+
+  <div class="field">
+    <%= f.label "パスワード(確認用)" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeolder: '半角英数字6文字以上' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "登録" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
