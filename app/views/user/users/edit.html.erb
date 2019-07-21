@@ -1,1 +1,25 @@
-edit.html.erb
+<h2>My Page</h2>
+	<p>マイページ編集</p>
+
+
+<div class="profile">
+	<%= form_for @user, :url => { :controller => :users, :action => :update }  do |f| %>
+
+	<div class="icon">
+		<%= f.attachment_field :user_image, placeholder: "プロフィール画像" %>
+	</div>
+
+	<h3 class="profile-name">名前<br />
+		<%= f.text_field :name, :size => "20x20"  %>
+	</h3>
+
+	<h3 class="introduction">自己紹介文<br />
+		<%= f.text_field :introduction , :size => "50x50" %>
+	</h3>
+
+	<p>
+		<%= f.submit "Update" %>
+	</p>
+
+	<% end %>
+</div>

@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Category.create(category_name: "抜歯")
+Category.create(category_name: "非抜歯")
+Category.create(category_name: "マウスピース矯正")
+Category.create(category_name: "裏側矯正")
+Category.create(category_name: "部分矯正")
+Category.create(category_name: "その他")
+
+admin = Admin.new(:email => 'teeth@gmail.com', :password => 'teeth1234')
+admin.save!

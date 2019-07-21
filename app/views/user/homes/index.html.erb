@@ -1,0 +1,13 @@
+<div class="main">
+	<h1>メインページ</h1>
+
+	<div class="category">
+		<h2>カテゴリー</h2>
+		<% @categories.each do |category| %>
+		<%= link_to user_category_path(category.id) do%>
+		<div class="category-name">
+		#<%= category.category_name %>
+		<% end %>
+		<% end %>
+	</div>
+</div>

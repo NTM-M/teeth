@@ -1,2 +1,30 @@
-<h1>User::Categories#show</h1>
-<p>Find me in app/views/user/categories/show.html.erb</p>
+<div class="category-show">
+
+	<h1>#<%= @category.category_name %></h1>
+
+	<div class="category-posts">
+		<% @category.posts.each do |post| %>
+		<%= link_to user_post_path(post.id) do %>
+		<div class="image">
+			<%= attachment_image_tag post, :image, format: 'jpeg', fallback:"no_post_image.png", size: '300x300'  %>
+		</div>
+
+		<div class="title">
+			<%= post.title %>
+		</div>
+
+		<div class="date">
+			<%= post.created_at.strftime('%Y/%m/%d')%>
+		</div>
+
+		<div class="post-name">
+			<%= attachment_image_tag post.user, :user_image, format: 'jpeg', fallback:"no_image.png", size: '40x40' %>
+			<%= post.user.name %>
+		</div>
+
+		<% end %>
+		<% end %>
+
+	</div>
+
+</div>

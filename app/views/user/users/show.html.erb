@@ -1,2 +1,36 @@
-<div class="title">
-	<h2>My Page</h2></div>
+
+	<h2>My Page</h2>
+
+	<div class="profile">
+		<div class="icon">
+			<%= attachment_image_tag @user, :user_image, size: '100', format: 'jpeg', fallback:"no_image.png" %>
+		</div>
+		<h3 class="profile-name">
+			<%= @user.name %>
+		</h3>
+		<h4 class="introduction">
+			<%= @user.introduction %>
+		</h4>
+	</div>
+
+	<% if @user.id == current_user.id %>
+	<%= link_to "プロフィール編集", edit_user_user_path(@user) , class: "btn btn-info"%>
+	<%= link_to "アカウント削除", edit_user_user_path(@user), class: "btn btn-info" %>
+	<% end %>
+
+	<div class="posts">
+		<h2>ALL POSTS</h2>
+		<% @user.posts.each do |post| %>
+		<%= link_to user_post_path(post.id) do %>
+		<div class="image">
+			<%= attachment_image_tag post, :image, format: 'jpeg', fallback:"no_post_image.png", size: '200x200'  %>
+		</div>
+		<div class="title">
+			<%= post.title %>
+		</div>
+		<div class="date">
+			<%= post.created_at.strftime('%Y/%m/%d')%>
+		</div>
+		<% end %>
+		<% end %>
+	</div>

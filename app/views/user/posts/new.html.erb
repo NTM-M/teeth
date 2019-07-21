@@ -1,21 +1,38 @@
-<h1>投稿</h1>
-<%= form_for @post, :url => { :controller => :posts, :action => :create } do |f| %>
+<div class="post-new">
 
-<%= f.attachment_field :image, placeolder:'画像' %>
+  <h1>NEW POST</h1>
 
-<h3>タイトル</h3>
-<%= f.text_field :title %>
+  <%= form_for @post, :url => { :controller => :posts, :action => :create } do |f| %>
 
-<h5>病院名<br />
-	<%= f.text_field :hospital, placeolder:'任意' %>
-</h5>
-<h5>費用<br />
-	<%= f.text_field :cost, placeolder:'任意' %>
-</h5>
+  	<div class="form-group">
+  		<%= f.attachment_field :image %>
+  	</div>
 
-<h3>本文</h3>
-<%= f.text_area :body %>
+	<div class="form-group">
+		<h3>タイトル</h3>
+		<%= f.text_field :title, class: 'form-control' %>
+	</div>
 
-<h4><%= f.submit '投稿' %></h4>
+	<div class="form-group">
+		<h5>病院名</h5>
+		<%= f.text_field :hospital, class: 'form-control' %>
+	</div>
 
-<% end %>
+	<div class="form-group">
+		<h5>費用</h5>
+		<%= f.text_field :cost, class: 'form-control' %>
+	</div>
+
+	<div class="form-group">
+		<h3>本文</h3>
+		<%= f.text_area :body, class: 'form-control', rows:10 %>
+	</div>
+
+	<div class="form-group">
+		<h4>カテゴリー</h4>
+		<%= f.collection_select :category_id, Category.all, :id, :category_name %>
+	</div>
+	<%= f.submit '投稿', class: 'btn btn-info btn-block' %>
+
+	<% end %>
+</div>

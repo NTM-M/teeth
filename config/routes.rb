@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   namespace :admin do
 
+    get '/' => 'homes#index'
+
     resources :users, only: [:index, :show]
 
     resources :posts, only: [:index, :show]
@@ -11,15 +13,18 @@ Rails.application.routes.draw do
 
   namespace :user do
 
+    get '/' => 'homes#index'
+
+    get '/about' => 'homes#about', as: 'about'
+
     resources :users, only: [:show, :edit, :update, :destroy]
 
-    resources :posts
+    resources :posts do
+      resource :comments, only: [:create]
+    end
 
-    resources :comments, only: [:create, :destroy]
 
     resources :categories, only: [:show]
-
-    resources :bookmarks, only: [:create, :destroy]
 
   end
 

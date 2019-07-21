@@ -27,13 +27,16 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
-                <li><%= link_to 'HOME',user_posts_path %></li>
-                <li><%= link_to 'NEW', new_user_post_path %></li>
+                <li><%= link_to 'HOME', user_path %></li>
+                <li><%= link_to 'ABOUT', user_about_path %></li>
+                <li><%= link_to 'ALL POST', user_posts_path %></li>
+                <li><%= link_to 'NEW POST', new_user_post_path %></li>
                 <li><%= link_to 'MY PAGE', user_user_path(current_user.id) %></li>
                 <li><%= link_to 'LOG OUT', destroy_user_session_path, method: :delete %></li>
             <% else %>
-                <li><%= link_to 'HOME', user_posts_path %></li>
-                <li><%= link_to '#' %></li>
+                <li><%= link_to 'HOME', user_path %></li>
+                <li><%= link_to 'ABOUT', user_about_path %></li>
+                 <li><%= link_to 'ALL POST', user_posts_path %></li>
                 <li><%= link_to 'SIGN UP', new_user_registration_path %></li>
                 <li><%= link_to 'LOG IN', new_user_session_path %></li>
             <% end %>

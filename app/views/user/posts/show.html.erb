@@ -1,14 +1,53 @@
-<h1>詳細</h1>
+<section class="post-show">
+	<h2>POST</h2>
+	<%= attachment_image_tag @post, :image, :fill, format: 'jpeg', fallback:"no_post_image.png", size: '250x250' %>
+	<h3>タイトル</h3>
+	<p><%= @post.title %></p>
 
-<h3>タイトル</h3>
-<p><%= @post.title %></p>
+	<h3>病院名</h3>
+	<p><%= @post.hospital %></p>
 
-<h3>病院名</h3>
-<p><%= @post.hospital %></p>
+	<h3>費用</h3>
+	<p><%= @post.cost %></p>
 
-<h3>費用</h3>
-<p><%= @post.cost %></p>
+	<h3><%= @post.body %></h3>
 
-<h3><%= @post.body %></h3>
+	<div class="category-name">
+		<%= link_to user_category_path(@category.id) do %>
+	<h4>#<%= @post.category.category_name %></h4>
+	<% end %>
+	</div>
 
-<%= link_to "編集", edit_user_post_path(@post.id) %>
+	<div class="date">
+	<%= @post.created_at.strftime('%Y/%m/%d')%>
+	</div>
+	<div class="post-name">By
+		<%= link_to user_user_path(@user.id) do %>
+		<%= attachment_image_tag @post.user, :user_image, format: 'jpeg', fallback:"no_image.png", size: '40x40' %>
+		<%= @post.user.name %>
+		<% end %>
+	</div>
+
+	<% if @post.user == current_user %>
+	<%= link_to "編集", edit_user_post_path(@post.id), class: "btn btn-outline-info" %> / <%= link_to "削除", user_post_path(@post.id), method: :delete, "data-confirm" => "削除しますか？", class: "btn btn-outline-info" %>
+	<% end %>
+
+	<%= form_for [@post, @comment], url: user_post_comments_path(@post) do |f| %>
+	<%= f.text_field :content %>
+	<%= f.submit "送信" %>
+	<% end %>
+
+	<ol>
+		<% @post.comments.each do |comment| %>
+		<li class="comment">
+				<%= attachment_image_tag comment.user, :user_image, format: 'jpeg', fallback:"no_image.png", size: '20x20' %>
+				<%= comment.user.name%>
+				<%= comment.content %>
+				<%= comment.created_at.strftime('%Y/%m/%d') %>
+		</li>
+		<% end %>
+	</ol>
+</section>
+
+
+
